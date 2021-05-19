@@ -44,6 +44,23 @@ class Process(Property):
                     return True
         return False
 
+    def has_link_to(self, other_process, preceeding=False, following=False):
+        if preceeding:
+            for preceding_process in self.preceded_by:
+                preceding_process = self._str_to_instance(preceding_process)
+                if preceding_process.matches(other_process):
+                    return True
+                if preceding_process.has_link_to(other_process, preceeding=True, following=False):
+                    return True
+        if following:
+            for following_process in self.followed_by:
+                following_process = self._str_to_instance(following_process)
+                if following_process.matches(other_process):
+                    return True
+                if following_process.has_link_to(other_process, preceeding=False, following=True):
+                    return True
+        return False
+
     def is_described(self):
         return self._do_core_frame_entities_exist() and self._do_lexical_units_exist()
 

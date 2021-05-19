@@ -37,7 +37,7 @@ class SignIn(Process):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.core_frame_entities = [Object("", accept_any_name=True)]
-        self.lexical_units = [Verb("get"), Verb("Apply")]
+        self.lexical_units = [Verb("log in"), Verb("sign in")]
         self.non_core_entities = [PersonSubject]
         self.preceded_by = ["ApplicationGranted"]
 
@@ -46,7 +46,7 @@ class BeginApplicationProcess(Process):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.core_frame_entities = [Object("", accept_any_name=True)]
-        self.lexical_units = [Verb("get"), Verb("Apply")]
+        self.lexical_units = [Verb("get"), Verb("apply")]
         self.non_core_entities = [PersonSubject]
         self.preceded_by = []
         self.followed_by = ["Application"]
